@@ -1,17 +1,13 @@
 import React from "react";
 
+import { Anchor } from "./details";
+
 /** __A generic header component__ */
 export const Header = props => {
-  const content = props.linkto ? (
-    <a href="{props.linkto}" target="_blank">
-      {props.children}
-    </a>
-  ) : (
-    <>{props.children}</>
-  );
+  const heading = <h3 className="heading">{props.children}</h3>;
   return (
     <div>
-      <h2>{content}</h2>
+      {props.linkto ? <Anchor to={props.linkto}>{heading}</Anchor> : heading}
       <hr />
     </div>
   );

@@ -1,12 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import SiteList from "./sitelist";
+import { SiteList } from "./sitelist";
+import { Container, Header } from "./utils";
 
 const RequesterPanel = props => {
   return (
-    <div className="container">
+    <Container className="app">
+      <Header>Requester Panel</Header>
       <SiteList sites={props.sites} />
-    </div>
+    </Container>
   );
 };
 

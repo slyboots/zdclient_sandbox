@@ -19,7 +19,7 @@ const Example = props => {
 
 const examples = [
   {
-    name: "Site List",
+    name: "Site List Component",
     render: () => {
       return (
         <div className="app">
@@ -29,13 +29,19 @@ const examples = [
     }
   },
   {
-    name: "Site Details",
+    name: "Site Details Component",
     render: () => {
       return (
         <div className="app">
           <SiteDetails site={dummyData.singleSite} />
         </div>
       );
+    }
+  },
+  {
+    name: "Requester Panel",
+    render: () => {
+      return <RequesterPanel sites={dummyData.multiSite.base} />;
     }
   }
 ];
