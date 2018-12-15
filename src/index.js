@@ -39,11 +39,11 @@ const examples = [
     }
   },
   {
-    name: "Requester Panel",
+    name: "Requester Panel: Site List View",
     render: () => {
       return (
         <RequesterPanel
-          title="Requester Panel Site List"
+          title="Matching Sites"
           sites={dummyData.multiSite.base}
         />
       );
