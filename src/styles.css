@@ -1,0 +1,32 @@
+* + * {
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+.example {
+  margin: 5px;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 0 0 0 5px;
+  box-sizing: border-box;
+}
+.example > h1 {
+  border-bottom: 3px solid darkgrey;
+}
+.example > .app {
+  font-family: sans-serif;
+  padding: 10px 12.5px 20px 12.5px;
+  border: 1px dotted gray;
+  min-height: 400px;
+  width: 320px;
+  box-sizing: border-box;
+  margin: auto;
+}
+.container {
+  box-sizing: border-box;
+  border: 1px solid gray;
+}
+.row {
+  display: block;
+  width: 100%;
+  padding: 0px 5px;
+  margin-bottom: 5px;
+}
