@@ -11,7 +11,7 @@ import "./styles.css";
 const Example = props => {
   return (
     <div className="example">
-      <h1>{props.name}</h1>
+      <h2>{props.name}</h2>
       {props.render()}
     </div>
   );
@@ -41,7 +41,12 @@ const examples = [
   {
     name: "Requester Panel",
     render: () => {
-      return <RequesterPanel sites={dummyData.multiSite.base} />;
+      return (
+        <RequesterPanel
+          title="Requester Panel Site List"
+          sites={dummyData.multiSite.base}
+        />
+      );
     }
   }
 ];
