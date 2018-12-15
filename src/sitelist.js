@@ -13,9 +13,9 @@ const SiteInfoRow = props => {
   );
 };
 
-const SiteList = props => {
+export const SiteList = props => {
   return (
-    <div>
+    <div class="container">
       <Header>Site Details</Header>
       {props.sites.map((site, i) => (
         <SiteInfoRow key={i} domain={site.site_name} ownerName={site.name} />
@@ -23,4 +23,3 @@ const SiteList = props => {
     </div>
   );
 };
-export default SiteList;
