@@ -21,8 +21,6 @@
   margin: auto;
 }
 .container {
-  box-sizing: border-box;
-  border: 1px solid gray;
   padding: 0;
   margin: 0;
 }

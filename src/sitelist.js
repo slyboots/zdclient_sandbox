@@ -1,14 +1,16 @@
 import React from "react";
 
+import { Detail, DetailGroup } from "./details";
+
 const SiteInfoRow = props => {
   return (
-    <div className="container row">
-      <a href={props.domain}>{props.domain}</a>
-      <br />
-      <small>
-        Owner:&nbsp;<i>{props.ownerName || "Unassigned"}</i>
-      </small>
-    </div>
+    <DetailGroup>
+      <Detail anchor={props.domain}>{props.domain}</Detail>
+
+      <Detail label="Owner">
+        <small>{props.ownerName || "Unassigned"}</small>
+      </Detail>
+    </DetailGroup>
   );
 };
 
