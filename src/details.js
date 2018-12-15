@@ -1,5 +1,7 @@
 import React from "react";
 
+import { Vl } from "./utils";
+
 import "./details.css";
 
 /** __An HTML link with some preset attributes__ */
@@ -50,5 +52,18 @@ export const Flag = props => {
 };
 
 export const DetailGroup = props => {
-  return <div className="detail__group">{props.children}</div>;
+  const children = React.Children.toArray(props.children);
+  return (
+    <div className="detail__group">
+      {children.map((child, i) => {
+        console.log(child);
+        return (
+          <div style={{ display: "inline-block" }}>
+            <span>{child}</span>
+            <Vl width="2px" color="black" />
+          </div>
+        );
+      })}
+    </div>
+  );
 };

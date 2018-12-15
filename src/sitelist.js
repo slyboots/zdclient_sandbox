@@ -2,7 +2,7 @@ import React from "react";
 
 import { Detail, DetailGroup } from "./details";
 
-import "./sitelist.css";
+// import "./sitelist.css";
 
 const SiteListRow = props => {
   return (
