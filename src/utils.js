@@ -26,3 +26,24 @@ export const Container = props => {
 export const Separator = props => {
   return <>&nbsp;{props.use || "|"}&nbsp;</>;
 };
+
+/** __A fancy separator using a CSS div instead of text. It will always be 1em tall__
+ * @prop {string} width - the width of the separator in px
+ * @prop {strong} color - the color of the separator
+ */
+export const Vl = props => {
+  const lineStyles = {
+    borderLeft: [props.width, "solid", props.color].join(" "),
+    minHeight: "1em",
+    display: "inline-block",
+    marginBottom: "-.20em",
+    marginLeft: (parseFloat(props.width) / 2) * -1 + "px"
+  };
+  return (
+    <div style={{ display: "inline" }}>
+      <span>&nbsp;</span>
+      <div style={lineStyles} />
+      <span>&nbsp;</span>
+    </div>
+  );
+};
