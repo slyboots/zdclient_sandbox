@@ -94,9 +94,7 @@ const SiteStatusFlags = props => {
   };
   const details = Object.keys(site).map((k, i) => {
     return typeof site[k] === "boolean" && mapper.hasOwnProperty(k) ? (
-      <Detail key={i} label={mapper[k]}>
-        {site[k] ? "✔" : "✘"}
-      </Detail>
+      <Flag key={i} name={mapper[k]} true={site[k]} />
     ) : null;
   });
   return <DetailGroup id="statusFlagPanel">{details}</DetailGroup>;
