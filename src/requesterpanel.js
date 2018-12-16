@@ -6,7 +6,7 @@ import { Container, Header } from "./utils";
 const RequesterPanel = props => {
   return (
     <Container className="app">
-      <Header>{props.title}</Header>
+      <Header lvl="2">{props.title}</Header>
       <SiteList sites={props.sites} />
     </Container>
   );

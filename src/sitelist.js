@@ -7,7 +7,7 @@ import "./sitelist.css";
 const SiteListRow = props => {
   return (
     <div className="sitelist__row">
-      <DetailGroup>
+      <DetailGroup inline>
         <Detail>
           <b>{props.domain}</b>
         </Detail>
@@ -20,6 +20,7 @@ const SiteListRow = props => {
 };
 
 export const SiteList = props => {
+  const totalSites = props.sites.length;
   return (
     <div className="sitelist">
       {props.sites.map((site, i) => (

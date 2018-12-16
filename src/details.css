@@ -1,23 +1,25 @@
 .detail {
   margin: 0.2em;
 }
-.detail__label {
-  font-weight: 500;
+.detail-label {
+  font-weight: bold;
 }
-.detail-inline {
+.detail.inline {
   display: inline-block;
 }
-.detail-block {
+.detail.block {
   display: block;
 }
-.detail__group {
+.detail-group {
   display: block;
   width: 100%;
-  /* border-bottom: 2px solid #666; */
 }
-.detail__group.row > div {
+.detail-group .detail {
+  margin: 0 !important;
+}
+.detail-group.inline > div {
   display: inline-block !important;
 }
-.detail__group.col > div {
+.detail-group.block > div {
   display: block !important;
 }

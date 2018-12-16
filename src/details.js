@@ -13,7 +13,7 @@ export const Anchor = props => (
 
 /** __Descriptor for a Detail__ */
 export const Label = props => (
-  <span className="detail__label">{props.children}:&nbsp;</span>
+  <span className="detail-label">{props.children}:&nbsp;</span>
 );
 
 /** __Represents a single unit of information__
@@ -26,7 +26,7 @@ export const Detail = props => {
   const label = props.label ? <Label>{props.label}</Label> : null;
   return (
     <div
-      className={"detail " + (props.inline ? "detail-inline" : "detail-block")}
+      className={"detail " + (props.inline ? "inline" : "block")}
       title={props.hint}
     >
       {label}
@@ -38,7 +38,6 @@ export const Detail = props => {
     </div>
   );
 };
-
 /** __A specialized Detail for rendering boolean values__
  * @prop {boolean} true - if provided then the flag is true
  * @prop {string} name  - the name of the flag to be used as a Detail label
@@ -50,19 +49,30 @@ export const Flag = props => {
     </Detail>
   );
 };
-
+/** __Renders a group of details__
+ * @prop {boolean} inline - whether or not to render children inline default is false
+ */
 export const DetailGroup = props => {
+  const { inline } = props;
+  const children = React.Children.toArray(props.children);
   const count = React.Children.count(props.children);
+  const display = props.inline ? "inline-block" : "block";
+  const formattedChildren = children.map(child =>
+    React.cloneElement(child, {
+      inline: inline ? true : false
+    })
+  );
   return (
-    <div className={"detail__group " + (props.inline ? "row" : "col")}>
-      {React.Children.map(props.children, (child, i) => {
+    <div className={"detail-group-" + (inline ? "inline" : "block")}>
+      {formattedChildren.map((child, i) => {
+        console.log(child);
         return (
-          <div>
-            <div className="detail-inline">{child}</div>
+          <>
+            {child}
             {props.inline && ++i < count ? (
               <Vl width="2px" color="black" />
             ) : null}
-          </div>
+          </>
         );
       })}
     </div>
