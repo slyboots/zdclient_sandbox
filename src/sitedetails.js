@@ -8,36 +8,27 @@ import {
   ShortcutLink
 } from "./shortcuts";
 
-const DetailGroupOld = props => {
+const SupportLinkGroup = props => {
+  const { site } = props.site;
+  const links = [
+    { u: site.mcp_url, h: "mcp", c: "MCP" },
+    { u: site.current_url + "/admin", h: "admin", c: "Admin" },
+    { u: site.lm_url, h: "lm", c: "LM" },
+    { u: site.drip_url, h: "drip", c: "Drip" },
+    { u: site.accounts_url, h: "accounts", c: "Accounts" }
+  ];
   return (
-    <div id={props.id} style={{ marginBottom: "10px" }}>
-      {props.children}
-      <hr />
-    </div>
+    <DetailGroup inline>
+      {links.map((link, i) => {
+        return (
+          <Detail anchor={link.u} hint={link.h} key={i}>
+            {link.c}
+          </Detail>
+        );
+      })}
+    </DetailGroup>
   );
 };
-
-const DetailOld = props => {
-  const infoLabel = props.label ? (
-    <span style={{ fontWeight: "bold" }}>{props.label}:&nbsp;</span>
-  ) : null;
-  return (
-    <>
-      {props.inline ? (
-        <span>
-          {infoLabel}
-          {props.children}
-        </span>
-      ) : (
-        <div>
-          {infoLabel}
-          {props.children}
-        </div>
-      )}
-    </>
-  );
-};
-
 const SiteStatusFlags = props => {
   const { site } = props;
   const mapper = {
@@ -69,22 +60,19 @@ export const SiteDetails = props => {
       <Detail anchor={site.current_url}>
         <Header lvl="2">{site.site_name}</Header>
       </Detail>
-      <DetailGroup>
+      <DetailGroup id="owner">
         <Detail label="Owner">{site.name}</Detail>
         <Detail>{site.email}</Detail>
       </DetailGroup>
-      <DetailGroup id="companyInfo">
+      <DetailGroup id="company">
         <Detail label="Start Date">{site.company_started}</Detail>
         <Detail label="Timezone">{site.timezone}</Detail>
-        <Detail inline={true} label="Agents">
-          {site.number_of_agents}
-        </Detail>
-        <Separator />
-        <Detail inline={true} label="Leads">
-          {site.lead_count}
-        </Detail>
+        <DetailGroup inline>
+          <Detail label="Agents">{site.number_of_agents}</Detail>
+          <Detail label="Leads">{site.lead_count}</Detail>
+        </DetailGroup>
       </DetailGroup>
-      <DetailGroup id="supportLinks">
+      <DetailGroup id="support-links">
         <SupportShortcutContainer site={{ site }} />
       </DetailGroup>
       <DetailGroup id="mlsBoardLinks">

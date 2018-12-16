@@ -13,13 +13,8 @@
 .detail-group {
   display: block;
   width: 100%;
+  margin-bottom: 10px;
 }
 .detail-group .detail {
-  margin: 0 !important;
-}
-.detail-group.inline > div {
-  display: inline-block !important;
-}
-.detail-group.block > div {
-  display: block !important;
+  margin: 0;
 }

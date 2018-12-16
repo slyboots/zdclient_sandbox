@@ -7,7 +7,7 @@ import "./sitelist.css";
 const SiteListRow = props => {
   return (
     <div className="sitelist__row">
-      <DetailGroup inline>
+      <DetailGroup>
         <Detail>
           <b>{props.domain}</b>
         </Detail>

@@ -56,22 +56,19 @@ export const DetailGroup = props => {
   const { inline } = props;
   const children = React.Children.toArray(props.children);
   const count = React.Children.count(props.children);
-  const display = props.inline ? "inline-block" : "block";
   const formattedChildren = children.map(child =>
     React.cloneElement(child, {
-      inline: inline ? true : false
+      inline: child.props.inline || inline ? true : false
     })
   );
   return (
-    <div className={"detail-group-" + (inline ? "inline" : "block")}>
+    <div className={"detail-group " + (inline ? "inline" : "block")}>
       {formattedChildren.map((child, i) => {
-        console.log(child);
+        const shouldSeparate = inline && ++i < count;
         return (
           <>
             {child}
-            {props.inline && ++i < count ? (
-              <Vl width="2px" color="black" />
-            ) : null}
+            {shouldSeparate ? <Vl width="2px" color="black" /> : null}
           </>
         );
       })}
