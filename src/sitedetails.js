@@ -2,14 +2,10 @@ import React from "react";
 import { Header, Separator } from "./utils";
 import { Detail, DetailGroup, Flag } from "./details";
 
-import {
-  BoardShortcutContainer,
-  SupportShortcutContainer,
-  ShortcutLink
-} from "./shortcuts";
+import { BoardShortcutContainer } from "./shortcuts";
 
 const SupportLinkGroup = props => {
-  const { site } = props.site;
+  const site = props.site;
   const links = [
     { u: site.mcp_url, h: "mcp", c: "MCP" },
     { u: site.current_url + "/admin", h: "admin", c: "Admin" },
@@ -44,7 +40,7 @@ const SiteStatusFlags = props => {
     on_old_template: "Site using Old Template"
   };
   const details = Object.keys(site).map((k, i) => {
-    return typeof site[k] == "boolean" && mapper.hasOwnProperty(k) ? (
+    return typeof site[k] === "boolean" && mapper.hasOwnProperty(k) ? (
       <Detail key={i} label={mapper[k]}>
         {site[k] ? "✔" : "✘"}
       </Detail>
@@ -54,7 +50,7 @@ const SiteStatusFlags = props => {
 };
 
 export const SiteDetails = props => {
-  const { site } = props;
+  const site = props.site;
   return (
     <div className="container">
       <Detail anchor={site.current_url}>
@@ -73,7 +69,7 @@ export const SiteDetails = props => {
         </DetailGroup>
       </DetailGroup>
       <DetailGroup id="support-links">
-        <SupportShortcutContainer site={{ site }} />
+        <SupportLinkGroup site={site} />
       </DetailGroup>
       <DetailGroup id="mlsBoardLinks">
         <BoardShortcutContainer id="" site={site} />
