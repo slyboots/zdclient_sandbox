@@ -34,18 +34,29 @@ const examples = [
     render: () => {
       return (
         <div className="app">
-          <SiteDetails site={dummyData.singleSite} />
+          <SiteDetails site={dummyData.singleSite.full} />
         </div>
       );
     }
   },
   {
-    name: "Requester Panel: Site List View",
+    name: "Requester Panel: Site List Many",
     render: () => {
       return (
         <RequesterPanel
           title="Matching Sites"
           sites={dummyData.multiSite.base}
+        />
+      );
+    }
+  },
+  {
+    name: "Requester Panel: Site List One",
+    render: () => {
+      return (
+        <RequesterPanel
+          title="Matching Sites"
+          sites={dummyData.singleSite.base}
         />
       );
     }

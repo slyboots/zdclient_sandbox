@@ -52,15 +52,16 @@ export const Flag = props => {
 };
 
 export const DetailGroup = props => {
-  const children = React.Children.toArray(props.children);
+  const count = React.Children.count(props.children);
   return (
-    <div className="detail__group">
-      {children.map((child, i) => {
-        console.log(child);
+    <div className={"detail__group " + (props.inline ? "row" : "col")}>
+      {React.Children.map(props.children, (child, i) => {
         return (
-          <div style={{ display: "inline-block" }}>
-            <span>{child}</span>
-            <Vl width="2px" color="black" />
+          <div>
+            <div className="detail-inline">{child}</div>
+            {props.inline && ++i < count ? (
+              <Vl width="2px" color="black" />
+            ) : null}
           </div>
         );
       })}

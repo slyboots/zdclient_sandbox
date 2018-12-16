@@ -2,13 +2,15 @@ import React from "react";
 
 import { Detail, DetailGroup } from "./details";
 
-// import "./sitelist.css";
+import "./sitelist.css";
 
 const SiteListRow = props => {
   return (
     <div className="sitelist__row">
-      <DetailGroup>
-        <Detail>{props.domain}</Detail>
+      <DetailGroup inline>
+        <Detail>
+          <b>{props.domain}</b>
+        </Detail>
         <Detail label="Owner">
           <small>{props.ownerName || "Unassigned"}</small>
         </Detail>
