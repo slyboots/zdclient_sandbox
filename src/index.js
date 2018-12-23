@@ -3,9 +3,6 @@ import ReactDOM from "react-dom";
 
 import dummyData from "./dummydata";
 import RequesterPanel from "./requesterpanel";
-import { SiteDetails } from "./sitedetails";
-import { SiteList } from "./sitelist";
-import { Vl } from "./utils";
 
 import "./styles.css";
 
@@ -71,7 +68,7 @@ const examples = [
 
 function App() {
   return (
-    <div>
+    <div style={{display: "flex", flexFlow: "row wrap", justifyContent: "space-around"}}>
       {examples.map((e, i) => (
         <Example
           key={i}
