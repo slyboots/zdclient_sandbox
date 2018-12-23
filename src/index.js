@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import dummyData from "./dummydata";
 import RequesterPanel from "./requesterpanel";
 import {SiteList} from "./sitelist";
+import {SiteSummary} from "./sitesummary"
 
 import "./styles.css";
 
@@ -21,6 +22,39 @@ const Example = props => {
 };
 
 const examples = [
+  {
+    name: "Site List Component",
+    description: "When multiple sites were passed in",
+    render: () => {
+      return (
+        <div className="app">
+          <SiteList sites={dummyData.multiSite.base} />
+        </div>
+      );
+    }
+  },
+  {
+    name: "Site List Component",
+    description: "When a single site was passed in",
+    render: () => {
+      return (
+        <div className="app">
+          <SiteList sites={dummyData.singleSite.base} />
+        </div>
+      );
+    }
+  },
+  {
+    name: "Site Details Component",
+    description: "Summary of a site when given full site",
+    render: () => {
+      return (
+        <div className="app">
+          <SiteSummary site={dummyData.singleSite.full} />
+        </div>
+      );
+    }
+  },
   {
     name: "Requester Panel: Site List",
     description:
@@ -46,27 +80,7 @@ const examples = [
         />
       );
     }
-  },
-  {
-    name: "Site List Component",
-    render: () => {
-      return (
-        <div className="app">
-          <SiteList sites={dummyData.multiSite.base} />
-        </div>
-      );
-    }
-  },
-  // {
-  //   name: "Site Details Component",
-  //   render: () => {
-  //     return (
-  //       <div className="app">
-  //         <SiteDetails site={dummyData.singleSite.full} />
-  //       </div>
-  //     );
-  //   }
-  // },
+  }
 ];
 
 function App() {
