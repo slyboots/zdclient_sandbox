@@ -99,24 +99,29 @@ export const BoardLinkGroup = props => {
  */
 const StatusFlagGroup = props => {
   const { site } = props;
-  const mapper = {
-    fb_managed_client: "FB Managed Mktg.",
-    fb_tool_enabled: "FB Tool Enabled",
-    real_leads_client: "Real Leads",
-    seller_tool_enabled: "Seller Leads",
-    dns_is_current: "On AWS",
-    site_is_live: "Live",
-    site_is_approved: "Approved",
-    texting_enabled: "LM Texting Enabled",
-    site_verified_with_google: "Google Verified",
-    on_old_template: "Site using Old Template"
-  };
-  const details = Object.keys(site).map((k, i) => {
-    return typeof site[k] === "boolean" && mapper.hasOwnProperty(k) ? (
-      <Flag key={k} name={mapper[k]} true={site[k]} />
-    ) : null;
-  });
-  return <DetailGroup id="statusFlagGroup">{details}</DetailGroup>;
+  const formatFlag = f =>
+    f.replace(/((\b|_)\w)/g, (m, o, s) => {
+      return m.toUpperCase().replace(/[^a-z]/gi, " ");
+    });
+  const flagGenerator = function* (site) {
+    let flags = [
+      'on_old_template',
+      'site_is_approved',
+      'site_is_live',
+      'dns_is_current',
+      'site_verified_with_google',
+      'texting_enabled',
+      'seller_tool_enabled',
+      'fb_tool_enabled',
+      'real_leads_client',
+      'fb_managed_client'
+    ]
+    for (let flag of flags) {
+      let {[flag]: val} = site;
+      yield (<Flag name={formatFlag(flag)} true={val} />)
+    }
+  }
+  return <DetailGroup id="statusFlagGroup">{[...flagGenerator(site)]}</DetailGroup>;
 };
 
 export const SiteSummary = props => {
