@@ -2,6 +2,43 @@ import React from "react";
 import { Header } from "./utils";
 import { Detail, DetailGroup, Flag } from "./details";
 
+
+/**
+ * Section containing basic site owner info
+ * @param {any} props
+ */
+const OwnerInfoGroup = props => {
+  const { site } = props;
+  return (
+    <DetailGroup id="owner">
+        <Detail label="Owner">{site.name}</Detail>
+        <Detail>{site.email}</Detail>
+    </DetailGroup>
+  )
+}
+
+/**
+ * Section containing useful information about a company
+ * @param {any} props
+ */
+const CompanyInfoGroup = props => {
+  const { site } = props;
+  return (
+    <DetailGroup id="company">
+        <Detail label="Start Date">{site.company_started}</Detail>
+        <Detail label="Timezone">{site.timezone}</Detail>
+        <DetailGroup inline>
+          <Detail label="Agents">{site.number_of_agents}</Detail>
+          <Detail label="Leads">{site.lead_count}</Detail>
+        </DetailGroup>
+      </DetailGroup>
+  )
+}
+
+/**
+ * Section containing links to useful support resources
+ * @param {any} props
+ */
 const SupportLinkGroup = props => {
   const { site } = props;
   const links = [
@@ -12,10 +49,10 @@ const SupportLinkGroup = props => {
     { u: site.accounts_url, h: "accounts", c: "Accounts" }
   ];
   return (
-    <DetailGroup inline>
+    <DetailGroup inline id="supportLinkGroup">
       {links.map((link, i) => {
         return (
-          <Detail anchor={link.u} hint={link.h} key={i}>
+          <Detail anchor={link.u} hint={link.h} key={link.u}>
             {link.c}
           </Detail>
         );
@@ -24,17 +61,22 @@ const SupportLinkGroup = props => {
   );
 };
 
-export const BoardShortcutContainer = props => {
-  const { boards } = props.site;
+/**
+ * Section containing links to useful MLS board / rope resources
+ * @param {any} props
+ */
+export const BoardLinkGroup = props => {
+  const { site } = props;
+  const { boards } = site;
   return (
-    <DetailGroup id={props.id}>
-      <Detail label="MCP" anchor={props.site.mcp_board_url} hint="RG MCP Board">
-        {props.site.board_name}
+    <DetailGroup id="boardLinkGroup">
+      <Detail label="MCP" anchor={site.mcp_board_url} hint="RG MCP Board">
+        {site.board_name}
       </Detail>
       {boards.map((board, i) => {
         const {board_id,rope_url,app_url,update_time} = board
         return (
-          <DetailGroup inline>
+          <DetailGroup key={board_id} inline>
             <Detail label="Rope" anchor={rope_url} hint="Data mapping system">
               #{board_id}
             </Detail>
@@ -51,7 +93,11 @@ export const BoardShortcutContainer = props => {
   );
 };
 
-const SiteStatusFlags = props => {
+/**
+ * Just displays various status / account flags
+ * @param {any} props
+ */
+const StatusFlagGroup = props => {
   const { site } = props;
   const mapper = {
     fb_managed_client: "FB Managed Mktg.",
@@ -67,40 +113,24 @@ const SiteStatusFlags = props => {
   };
   const details = Object.keys(site).map((k, i) => {
     return typeof site[k] === "boolean" && mapper.hasOwnProperty(k) ? (
-      <Flag key={i} name={mapper[k]} true={site[k]} />
+      <Flag key={k} name={mapper[k]} true={site[k]} />
     ) : null;
   });
-  return <DetailGroup id="statusFlagPanel">{details}</DetailGroup>;
+  return <DetailGroup id="statusFlagGroup">{details}</DetailGroup>;
 };
 
-export const SiteDetails = props => {
-  const site = props.site;
+export const SiteSummary = props => {
+  const { site } = props;
   return (
     <div className="container">
       <Detail anchor={site.current_url}>
         <Header lvl="2">{site.site_name}</Header>
       </Detail>
-      <DetailGroup id="owner">
-        <Detail label="Owner">{site.name}</Detail>
-        <Detail>{site.email}</Detail>
-      </DetailGroup>
-      <DetailGroup id="company">
-        <Detail label="Start Date">{site.company_started}</Detail>
-        <Detail label="Timezone">{site.timezone}</Detail>
-        <DetailGroup inline>
-          <Detail label="Agents">{site.number_of_agents}</Detail>
-          <Detail label="Leads">{site.lead_count}</Detail>
-        </DetailGroup>
-      </DetailGroup>
-      <DetailGroup id="support-links">
-        <SupportLinkGroup site={site} />
-      </DetailGroup>
-      <DetailGroup id="mlsBoardLinks">
-        <BoardShortcutContainer site={site} />
-      </DetailGroup>
-      <DetailGroup id="statusFlags">
-        <SiteStatusFlags site={site} />
-      </DetailGroup>
+      <OwnerInfoGroup site={site} />
+      <CompanyInfoGroup site={site} />
+      <SupportLinkGroup site={site} />
+      <BoardLinkGroup site={site} />
+      <StatusFlagGroup site={site} />
     </div>
   );
 };
