@@ -1,7 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { SiteList } from "./sitelist";
-import { Container, Header } from "./utils";
+import { Container } from "./utils";
 
 /**
  * Basically just a container for the site list.
