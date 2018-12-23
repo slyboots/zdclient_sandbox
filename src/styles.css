@@ -30,7 +30,12 @@ ul {
   padding: 0 0.5em;
   box-sizing: border-box;
   display: inline-block;
+  flex: 1 1 auto;
 
+}
+.example-header {
+  max-width: 320px;
+  margin: auto;
 }
 .example > h1 {
   border-bottom: 3px solid darkgrey;

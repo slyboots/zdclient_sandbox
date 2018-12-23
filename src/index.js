@@ -10,9 +10,11 @@ import "./styles.css";
 const Example = props => {
   return (
     <div className="example">
+      <div class="example-header">
       <h2>{props.name}</h2>
       <i>{props.description}</i>
       <hr />
+      </div>
       {props.render()}
     </div>
   );
