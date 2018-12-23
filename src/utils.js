@@ -9,7 +9,7 @@ import { Anchor } from "./details";
 export const Header = props => {
   const heading = React.createElement("h" + props.lvl, null, props.children); //<h3 className="heading">{props.children}</h3>;
   return (
-    <div>
+    <div style={{ position: "sticky", top: 0, backgroundColor: "lightgray" }}>
       {props.linkto ? <Anchor to={props.linkto}>{heading}</Anchor> : heading}
       <hr />
     </div>

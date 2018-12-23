@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Detail, DetailGroup } from "./details";
+import { Header } from "./utils";
 
 import "./sitelist.css";
 
@@ -23,6 +24,7 @@ export const SiteList = props => {
   const totalSites = props.sites.length;
   return (
     <div className="sitelist">
+      <Header lvl="3">Matching Sites: {totalSites} total</Header>
       {props.sites.map((site, i) => (
         <SiteListRow key={i} domain={site.site_name} ownerName={site.name} />
       ))}

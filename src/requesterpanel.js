@@ -3,10 +3,13 @@ import ReactDOM from "react-dom";
 import { SiteList } from "./sitelist";
 import { Container, Header } from "./utils";
 
+/**
+ * Basically just a container for the site list.
+ * Handles getting the data needed and passing it to the site list though
+ */
 const RequesterPanel = props => {
   return (
     <Container className="app">
-      <Header lvl="2">{props.title}</Header>
       <SiteList sites={props.sites} />
     </Container>
   );

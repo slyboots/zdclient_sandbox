@@ -3,7 +3,7 @@ import { Header, Separator } from "./utils";
 import { Detail, DetailGroup, Flag } from "./details";
 
 const SupportLinkGroup = props => {
-  const site = props.site;
+  const { site } = props;
   const links = [
     { u: site.mcp_url, h: "mcp", c: "MCP" },
     { u: site.current_url + "/admin", h: "admin", c: "Admin" },
@@ -123,7 +123,7 @@ export const SiteDetails = props => {
         <SupportLinkGroup site={site} />
       </DetailGroup>
       <DetailGroup id="mlsBoardLinks">
-        <BoardShortcutContainer id="" site={site} />
+        <BoardShortcutContainer site={site} />
       </DetailGroup>
       <DetailGroup id="statusFlags">
         <SiteStatusFlags site={site} />

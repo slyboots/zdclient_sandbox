@@ -6,7 +6,7 @@ import "./details.css";
 
 /** __An HTML link with some preset attributes__ */
 export const Anchor = props => (
-  <a href={props.to} target="_blank">
+  <a href={props.to || ""} target="_blank">
     {props.children}
   </a>
 );
