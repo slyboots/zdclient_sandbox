@@ -13,15 +13,19 @@ class RequesterPanel extends React.Component {
     this.state = {
       focus: props.sites.length === 1 ? 0 : props.focus // I KNOW THIS IS BAD BUT IM DOING THIS FOR NOW SO I CAN TEST IT
     }
+    // this.setFocus = this.setFocus.bind(this);
+  }
+  setFocus = (i) => {
+    this.setState((state) => {return {focus: state.focus === i? undefined : i}})
   }
   render() {
     const focused = this.state.focus >= 0
     return (
       <Container className="app">
         {focused? (
-          <SiteSummary site={this.props.sites[this.state.focus]}/>
+          <SiteSummary index={this.state.focus} site={this.props.sites[this.state.focus]} focusHandler={this.setFocus}/>
         ) : (
-          <SiteList sites={this.props.sites}/>
+          <SiteList sites={this.props.sites} focusHandler={this.setFocus}/>
         )}
       </Container>
     );

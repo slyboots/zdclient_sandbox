@@ -6,8 +6,11 @@ import { Header } from "./utils";
 import "./sitelist.css";
 
 const SiteListRow = props => {
+  let onClicked = () => {
+    return props.onFocused(props.index);
+  }
   return (
-    <div className="sitelist__row">
+    <div className="sitelist__row" onClick={onClicked}>
       <DetailGroup>
         <Detail>
           <b>{props.domain}</b>
@@ -26,7 +29,7 @@ export const SiteList = props => {
     <div className="sitelist">
       <Header lvl="3">Matching Sites: {totalSites} total</Header>
       {props.sites.map((site, i) => (
-        <SiteListRow key={i} domain={site.site_name} ownerName={site.name} />
+        <SiteListRow index={i} key={site.site_name} domain={site.site_name} ownerName={site.name} onFocused={props.focusHandler}/>
       ))}
     </div>
   );
