@@ -11,7 +11,7 @@ import "./styles.css";
 const Example = props => {
   return (
     <div className="example">
-      <div class="example-header">
+      <div className="example-header">
       <h2>{props.name}</h2>
       <i>{props.description}</i>
       <hr />
@@ -24,7 +24,7 @@ const Example = props => {
 const examples = [
   {
     name: "Site List Component",
-    description: "When multiple sites were passed in",
+    description: "Multiple sites with no focus",
     render: () => {
       return (
         <div className="app">
@@ -35,11 +35,33 @@ const examples = [
   },
   {
     name: "Site List Component",
-    description: "When a single site was passed in",
+    description: "Single site with no focus",
     render: () => {
       return (
         <div className="app">
           <SiteList sites={dummyData.singleSite.base} />
+        </div>
+      );
+    }
+  },
+  {
+    name: "Site List Component",
+    description: "Multiple sites with focus set",
+    render: () => {
+      return (
+        <div className="app">
+          <SiteList sites={dummyData.multiSite.base} focus={2} />
+        </div>
+      );
+    }
+  },
+  {
+    name: "Site List Component",
+    description: "Single site with focus set",
+    render: () => {
+      return (
+        <div className="app">
+          <SiteList sites={dummyData.singleSite.base} focus={0}/>
         </div>
       );
     }
@@ -58,12 +80,13 @@ const examples = [
   {
     name: "Requester Panel: Site List",
     description:
-      'Multiple Sites: renders multiple sites result as a single column of small "cards"',
+      'Multiple sites with focus set',
     render: () => {
       return (
         <RequesterPanel
           title="Multiple Sites"
           sites={dummyData.multiSite.base}
+          focus={3}
         />
       );
     }
@@ -71,12 +94,13 @@ const examples = [
   {
     name: "Requester Panel: Site List",
     description:
-      'Single Site: renders single site result as a single small "card"',
+      'Single Site with focus set',
     render: () => {
       return (
         <RequesterPanel
           title="Matching Sites"
           sites={dummyData.singleSite.base}
+          focus={1}
         />
       );
     }
@@ -88,7 +112,7 @@ function App() {
     <div style={{display: "flex", flexFlow: "row wrap", justifyContent: "space-around"}}>
       {examples.map((e, i) => (
         <Example
-          key={i}
+          key={"ex"+i}
           name={`${++i}: ${e.name}`}
           render={e.render}
           description={e.description}
