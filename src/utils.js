@@ -1,7 +1,5 @@
 import React from "react";
 
-import { Anchor } from "./details";
-
 /** __A generic header component__
  * has a lvl prop that is used to determine the header level
  * defaults to 3
@@ -10,7 +8,7 @@ export const Header = props => {
   const heading = React.createElement("h" + props.lvl, null, props.children); //<h3 className="heading">{props.children}</h3>;
   return (
     <div style={{ position: "sticky", top: 0}}>
-      {props.linkto ? <Anchor to={props.linkto}>{heading}</Anchor> : heading}
+      {heading}
       <hr />
     </div>
   );
