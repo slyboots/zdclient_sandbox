@@ -126,12 +126,12 @@ const StatusFlagGroup = props => {
 
 export const SiteSummary = props => {
   const { site } = props;
-  let clickHandler = (e) => {
+  let onClicked = (e) => {
     props.focusHandler(props.index)
   }
   return (
     <div className="container">
-      <div style={{width: '100%'}} onClick={clickHandler}><small>&lt; back</small></div>
+      <div style={{width: '100%'}} onClick={onClicked}><small>&lt; back</small></div>
       <Detail anchor={site.current_url || null}>
         <Header lvl="2">{site.site_name || null}</Header>
       </Detail>
