@@ -11,8 +11,8 @@ const OwnerInfoGroup = props => {
   const { site } = props;
   return (
     <DetailGroup id="owner">
-        <Detail label="Owner">{site.name}</Detail>
-        <Detail>{site.email}</Detail>
+        <Detail label="Owner">{site.name || null}</Detail>
+        <Detail>{site.email || null}</Detail>
     </DetailGroup>
   )
 }
@@ -25,11 +25,11 @@ const CompanyInfoGroup = props => {
   const { site } = props;
   return (
     <DetailGroup id="company">
-        <Detail label="Start Date">{site.company_started}</Detail>
-        <Detail label="Timezone">{site.timezone}</Detail>
+        <Detail label="Start Date">{site.company_started || null}</Detail>
+        <Detail label="Timezone">{site.timezone || null}</Detail>
         <DetailGroup inline>
-          <Detail label="Agents">{site.number_of_agents}</Detail>
-          <Detail label="Leads">{site.lead_count}</Detail>
+          <Detail label="Agents">{site.number_of_agents || null}</Detail>
+          <Detail label="Leads">{site.lead_count || null}</Detail>
         </DetailGroup>
       </DetailGroup>
   )
@@ -42,11 +42,11 @@ const CompanyInfoGroup = props => {
 const SupportLinkGroup = props => {
   const { site } = props;
   const links = [
-    { u: site.mcp_url, h: "mcp", c: "MCP" },
-    { u: site.current_url + "/admin", h: "admin", c: "Admin" },
-    { u: site.lm_url, h: "lm", c: "LM" },
-    { u: site.drip_url, h: "drip", c: "Drip" },
-    { u: site.accounts_url, h: "accounts", c: "Accounts" }
+    { u: site.mcp_url || null, h: "mcp", c: "MCP" },
+    { u: (site.current_url && site.current_url + "/admin") || null, h: "admin", c: "Admin" },
+    { u: site.lm_url || null, h: "lm", c: "LM" },
+    { u: site.drip_url || null, h: "drip", c: "Drip" },
+    { u: site.accounts_url || null, h: "accounts", c: "Accounts" }
   ];
   return (
     <DetailGroup inline id="supportLinkGroup">
@@ -70,10 +70,10 @@ export const BoardLinkGroup = props => {
   const { boards } = site;
   return (
     <DetailGroup id="boardLinkGroup">
-      <Detail label="MCP" anchor={site.mcp_board_url} hint="RG MCP Board">
+      <Detail label="MCP" anchor={site.mcp_board_url || null} hint="RG MCP Board">
         {site.board_name}
       </Detail>
-      {boards.map((board, i) => {
+      {boards? boards.map((board, i) => {
         const {board_id,rope_url,app_url,update_time} = board
         return (
           <DetailGroup key={board_id} inline>
@@ -88,7 +88,7 @@ export const BoardLinkGroup = props => {
             </Detail>
           </DetailGroup>
         );
-      })}
+      }): null}
     </DetailGroup>
   );
 };
@@ -118,7 +118,7 @@ const StatusFlagGroup = props => {
     ]
     for (let flag of flags) {
       let {[flag]: val} = site;
-      yield (<Flag name={formatFlag(flag)} true={val} />)
+      val && (yield (<Flag key={flag} name={formatFlag(flag)} true={val} />))
     }
   }
   return <DetailGroup id="statusFlagGroup">{[...flagGenerator(site)]}</DetailGroup>;
@@ -128,8 +128,8 @@ export const SiteSummary = props => {
   const { site } = props;
   return (
     <div className="container">
-      <Detail anchor={site.current_url}>
-        <Header lvl="2">{site.site_name}</Header>
+      <Detail anchor={site.current_url || null}>
+        <Header lvl="2">{site.site_name || null}</Header>
       </Detail>
       <OwnerInfoGroup site={site} />
       <CompanyInfoGroup site={site} />
