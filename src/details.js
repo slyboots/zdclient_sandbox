@@ -56,7 +56,7 @@ export const DetailGroup = props => {
   const { inline } = props;
   const children = React.Children.toArray(props.children);
   const count = React.Children.count(props.children);
-  const formattedChildren = children.map(child =>
+  const formattedChildren = children.map((child, i) =>
     React.cloneElement(child, {
       inline: child.props.inline || inline ? true : false
     })
@@ -66,10 +66,10 @@ export const DetailGroup = props => {
       {formattedChildren.map((child, i) => {
         const shouldSeparate = inline && ++i < count;
         return (
-          <>
+          <React.Fragment key={i}>
             {child}
-            {shouldSeparate ? <Vl width="2px" color="black" /> : null}
-          </>
+            {shouldSeparate ? <Vl key={"vl"+i} width="2px" color="black" /> : null}
+          </React.Fragment>
         );
       })}
     </div>
